@@ -1,0 +1,38 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Runtime.CompilerServices;
+
+namespace BitsExtensions
+{
+    public static partial class Bits
+    {
+<# foreach (var typePair in new [] {
+    ("short", "byte"),
+    ("int",   "ushort"),
+    ("long",  "uint"),
+}) {
+    #>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static <#= typePair.Item2 #> GetHiPart(this <#= typePair.Item1 #> value) =>  GetHiPart((u<#= typePair.Item1 #>)value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static <#= typePair.Item2 #> GetHiPart(this u<#= typePair.Item1 #> value) => (<#= typePair.Item2 #>)(value >> (sizeof(<#= typePair.Item2 #>) * 8));
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static <#= typePair.Item2 #> GetLoPart(this u<#= typePair.Item1 #> value) => GetLoPart((<#= typePair.Item1 #>)value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static <#= typePair.Item2 #> GetLoPart(this <#= typePair.Item1 #> value) => (<#= typePair.Item2 #>)(value & <#= typePair.Item2 #>.MaxValue);
+
+<#
+    }
+#>
+    }
+}
+
+
