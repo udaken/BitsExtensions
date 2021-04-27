@@ -1,4 +1,4 @@
-﻿
+﻿#pragma warning disable IDE0046
 using System;
 using System.Runtime.CompilerServices;
 
@@ -18,7 +18,7 @@ namespace BitsExtensions
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetBitAsBool(this int value, Index index) => GetBitAsBool((uint)value, index);
-        
+
         public static bool GetBitAsBoolChecked(this uint value, Index index)
         {
             if (index.Value >= (sizeof(uint) * 8))
@@ -40,7 +40,7 @@ namespace BitsExtensions
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static uint GetBits(this int value, Range range) => GetBits((uint)value, range);
-        
+
         public static uint GetBitsChecked(this uint value, Range range)
         {
             if (range.Start.Value >= (sizeof(uint) * 8) || range.End.Value >= (sizeof(uint) * 8))
@@ -64,7 +64,7 @@ namespace BitsExtensions
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetBitAsBool(this short value, Index index) => GetBitAsBool((ushort)value, index);
-        
+
         public static bool GetBitAsBoolChecked(this ushort value, Index index)
         {
             if (index.Value >= (sizeof(ushort) * 8))
@@ -86,7 +86,7 @@ namespace BitsExtensions
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ushort GetBits(this short value, Range range) => GetBits((ushort)value, range);
-        
+
         public static ushort GetBitsChecked(this ushort value, Range range)
         {
             if (range.Start.Value >= (sizeof(ushort) * 8) || range.End.Value >= (sizeof(ushort) * 8))
@@ -110,7 +110,7 @@ namespace BitsExtensions
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetBitAsBool(this long value, Index index) => GetBitAsBool((ulong)value, index);
-        
+
         public static bool GetBitAsBoolChecked(this ulong value, Index index)
         {
             if (index.Value >= (sizeof(ulong) * 8))
@@ -132,7 +132,7 @@ namespace BitsExtensions
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ulong GetBits(this long value, Range range) => GetBits((ulong)value, range);
-        
+
         public static ulong GetBitsChecked(this ulong value, Range range)
         {
             if (range.Start.Value >= (sizeof(ulong) * 8) || range.End.Value >= (sizeof(ulong) * 8))
@@ -156,7 +156,7 @@ namespace BitsExtensions
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetBitAsBool(this sbyte value, Index index) => GetBitAsBool((byte)value, index);
-        
+
         public static bool GetBitAsBoolChecked(this byte value, Index index)
         {
             if (index.Value >= (sizeof(byte) * 8))
@@ -178,7 +178,7 @@ namespace BitsExtensions
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte GetBits(this sbyte value, Range range) => GetBits((byte)value, range);
-        
+
         public static byte GetBitsChecked(this byte value, Range range)
         {
             if (range.Start.Value >= (sizeof(byte) * 8) || range.End.Value >= (sizeof(byte) * 8))

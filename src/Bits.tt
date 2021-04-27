@@ -4,7 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-
+#pragma warning disable IDE0046
 using System;
 using System.Runtime.CompilerServices;
 
@@ -31,7 +31,7 @@ namespace BitsExtensions
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetBitAsBool(this <#= typePair.Item1 #> value, Index index) => GetBitAsBool((<#= typePair.Item2 #>)value, index);
-        
+
         public static bool GetBitAsBoolChecked(this <#= typePair.Item2 #> value, Index index)
         {
             if (index.Value >= (sizeof(<#= typePair.Item2 #>) * 8))
@@ -53,7 +53,7 @@ namespace BitsExtensions
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static <#= typePair.Item2 #> GetBits(this <#= typePair.Item1 #> value, Range range) => GetBits((<#= typePair.Item2 #>)value, range);
-        
+
         public static <#= typePair.Item2 #> GetBitsChecked(this <#= typePair.Item2 #> value, Range range)
         {
             if (range.Start.Value >= (sizeof(<#= typePair.Item2 #>) * 8) || range.End.Value >= (sizeof(<#= typePair.Item2 #>) * 8))
