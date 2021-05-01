@@ -7,6 +7,21 @@ namespace BitsExtensions
     public static partial class Bits
     {
         #region int/uint
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetBit(ref this uint value, Index index, bool flag)
+        {
+            var offset = index.IsFromEnd ? (sizeof(int) * 8) - index.Value : index.Value;
+            uint mask = (uint)(1U << (offset - 1));
+            if (flag)
+            {
+                value |= mask;
+            }
+            else
+            {
+                value &= (uint)~mask;
+            }
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetBitAsBool(this uint value, Index index)
@@ -33,7 +48,7 @@ namespace BitsExtensions
         {
             var start = range.Start.IsFromEnd ? (sizeof(int) * 8) - range.Start.Value : range.Start.Value;
             var end = range.End.IsFromEnd ? (sizeof(int) * 8) - range.End.Value : range.End.Value;
-            var count = end - start -1;
+            var count = end - start - 1;
             const uint One = (uint)1U;
             return (uint)((value >> start) & ((One << count) - 1));
         }
@@ -53,6 +68,21 @@ namespace BitsExtensions
         #endregion
 
         #region short/ushort
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetBit(ref this ushort value, Index index, bool flag)
+        {
+            var offset = index.IsFromEnd ? (sizeof(short) * 8) - index.Value : index.Value;
+            ushort mask = (ushort)(1U << (offset - 1));
+            if (flag)
+            {
+                value |= mask;
+            }
+            else
+            {
+                value &= (ushort)~mask;
+            }
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetBitAsBool(this ushort value, Index index)
@@ -79,7 +109,7 @@ namespace BitsExtensions
         {
             var start = range.Start.IsFromEnd ? (sizeof(short) * 8) - range.Start.Value : range.Start.Value;
             var end = range.End.IsFromEnd ? (sizeof(short) * 8) - range.End.Value : range.End.Value;
-            var count = end - start -1;
+            var count = end - start - 1;
             const ushort One = (ushort)1U;
             return (ushort)((value >> start) & ((One << count) - 1));
         }
@@ -99,6 +129,21 @@ namespace BitsExtensions
         #endregion
 
         #region long/ulong
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetBit(ref this ulong value, Index index, bool flag)
+        {
+            var offset = index.IsFromEnd ? (sizeof(long) * 8) - index.Value : index.Value;
+            ulong mask = (ulong)(1U << (offset - 1));
+            if (flag)
+            {
+                value |= mask;
+            }
+            else
+            {
+                value &= (ulong)~mask;
+            }
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetBitAsBool(this ulong value, Index index)
@@ -125,7 +170,7 @@ namespace BitsExtensions
         {
             var start = range.Start.IsFromEnd ? (sizeof(long) * 8) - range.Start.Value : range.Start.Value;
             var end = range.End.IsFromEnd ? (sizeof(long) * 8) - range.End.Value : range.End.Value;
-            var count = end - start -1;
+            var count = end - start - 1;
             const ulong One = (ulong)1U;
             return (ulong)((value >> start) & ((One << count) - 1));
         }
@@ -145,6 +190,21 @@ namespace BitsExtensions
         #endregion
 
         #region sbyte/byte
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetBit(ref this byte value, Index index, bool flag)
+        {
+            var offset = index.IsFromEnd ? (sizeof(sbyte) * 8) - index.Value : index.Value;
+            byte mask = (byte)(1U << (offset - 1));
+            if (flag)
+            {
+                value |= mask;
+            }
+            else
+            {
+                value &= (byte)~mask;
+            }
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetBitAsBool(this byte value, Index index)
@@ -171,7 +231,7 @@ namespace BitsExtensions
         {
             var start = range.Start.IsFromEnd ? (sizeof(sbyte) * 8) - range.Start.Value : range.Start.Value;
             var end = range.End.IsFromEnd ? (sizeof(sbyte) * 8) - range.End.Value : range.End.Value;
-            var count = end - start -1;
+            var count = end - start - 1;
             const byte One = (byte)1U;
             return (byte)((value >> start) & ((One << count) - 1));
         }

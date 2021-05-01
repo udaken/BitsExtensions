@@ -20,6 +20,21 @@ namespace BitsExtensions
 }) {
     #>
         #region <#= typePair.Item1 #>/<#= typePair.Item2 #>
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetBit(ref this <#= typePair.Item2 #> value, Index index, bool flag)
+        {
+            var offset = index.IsFromEnd ? (sizeof(<#= typePair.Item1 #>) * 8) - index.Value : index.Value;
+            <#= typePair.Item2 #> mask = (<#= typePair.Item2 #>)(1U << (offset - 1));
+            if (flag)
+            {
+                value |= mask;
+            }
+            else
+            {
+                value &= (<#= typePair.Item2 #>)~mask;
+            }
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool GetBitAsBool(this <#= typePair.Item2 #> value, Index index)
@@ -46,7 +61,7 @@ namespace BitsExtensions
         {
             var start = range.Start.IsFromEnd ? (sizeof(<#= typePair.Item1 #>) * 8) - range.Start.Value : range.Start.Value;
             var end = range.End.IsFromEnd ? (sizeof(<#= typePair.Item1 #>) * 8) - range.End.Value : range.End.Value;
-            var count = end - start -1;
+            var count = end - start - 1;
             const <#= typePair.Item2 #> One = (<#= typePair.Item2 #>)1U;
             return (<#= typePair.Item2 #>)((value >> start) & ((One << count) - 1));
         }
