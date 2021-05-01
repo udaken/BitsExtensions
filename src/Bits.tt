@@ -22,6 +22,18 @@ namespace BitsExtensions
         #region <#= typePair.Item1 #>/<#= typePair.Item2 #>
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToBinaryString(this <#= typePair.Item1 #> value, bool prefix = false)
+        {
+            return ToBinaryString((<#= typePair.Item2 #>)value, sizeof(<#= typePair.Item2 #>), prefix);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToBinaryString(this <#= typePair.Item2 #> value, bool prefix = false)
+        {
+            return ToBinaryString(value, sizeof(<#= typePair.Item2 #>), prefix);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetBit(ref this <#= typePair.Item2 #> value, Index index, bool flag)
         {
             var offset = index.IsFromEnd ? (sizeof(<#= typePair.Item1 #>) * 8) - index.Value : index.Value;

@@ -9,6 +9,18 @@ namespace BitsExtensions
         #region int/uint
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToBinaryString(this int value, bool prefix = false)
+        {
+            return ToBinaryString((uint)value, sizeof(uint), prefix);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToBinaryString(this uint value, bool prefix = false)
+        {
+            return ToBinaryString(value, sizeof(uint), prefix);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetBit(ref this uint value, Index index, bool flag)
         {
             var offset = index.IsFromEnd ? (sizeof(int) * 8) - index.Value : index.Value;
@@ -69,6 +81,18 @@ namespace BitsExtensions
 
         #region short/ushort
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToBinaryString(this short value, bool prefix = false)
+        {
+            return ToBinaryString((ushort)value, sizeof(ushort), prefix);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToBinaryString(this ushort value, bool prefix = false)
+        {
+            return ToBinaryString(value, sizeof(ushort), prefix);
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetBit(ref this ushort value, Index index, bool flag)
         {
@@ -131,6 +155,18 @@ namespace BitsExtensions
         #region long/ulong
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToBinaryString(this long value, bool prefix = false)
+        {
+            return ToBinaryString((ulong)value, sizeof(ulong), prefix);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToBinaryString(this ulong value, bool prefix = false)
+        {
+            return ToBinaryString(value, sizeof(ulong), prefix);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetBit(ref this ulong value, Index index, bool flag)
         {
             var offset = index.IsFromEnd ? (sizeof(long) * 8) - index.Value : index.Value;
@@ -191,6 +227,18 @@ namespace BitsExtensions
 
         #region sbyte/byte
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToBinaryString(this sbyte value, bool prefix = false)
+        {
+            return ToBinaryString((byte)value, sizeof(byte), prefix);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToBinaryString(this byte value, bool prefix = false)
+        {
+            return ToBinaryString(value, sizeof(byte), prefix);
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetBit(ref this byte value, Index index, bool flag)
         {
